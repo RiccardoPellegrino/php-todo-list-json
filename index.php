@@ -21,18 +21,27 @@
     </head>
 
     <body>
-        <div id="app">
-            <div class="mycontainer">
-                <h1>Todo List</h1>
-                <input type="text" v-model="newToDo">
-                <button class="btn btn-dark ms-2" @click="send()">invia</button>
-                <ul>
-                    <li v-for="todo in todos">{{todo}}
-
-                    </li>
-                </ul>
-                <form action=""></form>
+    <div id="app">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center form-container">
+                <h1 class="text-white-50">Todo List</h1>
+                <div class="form">
+                    <ul class="d-flex flex-column">
+                        <li v-for="(item, index) in list" class="todo" :class="item.done ? 'done' : ''">
+                        {{ index }} {{ item.text }} 
+                            <span class="icon float-end" @click="cancellaElemento(index)">
+                                <i class="fa-solid fa-trash float-end bg-danger"></i>
+                            </span>
+                        </li>
+                    </ul>
+                <div>
+                    <input type="text" v-model="newTask" placeholder="Aggiungi da fare..." name="newTask" @keyup.enter='send()'>
+                    <button class="button" @click='send()'>Aggiungi</button>
+                </div>
+                </div>
+                
             </div>
-    </body>
-
-    </html>
+        </div>
+    </div>
+</body>
+</html>

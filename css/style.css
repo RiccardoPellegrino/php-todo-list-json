@@ -5,39 +5,71 @@
 }
 
 body {
-    background-color: blue;
+    background-color: rgb(70, 70, 223);
     font-family: Arial, Helvetica, sans-serif;
 }
-
-.mycontainer {
-    width: 80%;
-    margin: 0 auto;
+.todo {
+    background-color: white;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(196, 196, 196, 0.2);
 }
 
-.linea {
-    text-decoration: line-through 1px red;
-    cursor: pointer;
+.todo:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
-li {
-    cursor: pointer;
-    font-size: 20px;
+.todo:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
 
+.todo.done {
+    text-decoration: line-through;
+}
+
+.form-container {
+    background-color: #001632;
+    margin-top: 50px;
+    padding: 100px 0;
+    border-radius: 20px;
+}
+
+.form {
+    width: 50%;
+}
+
+h1 {
+    color: #6f787f;
 }
 
 ul {
-    background-color: azure;
-    border: 1px solid black;
-    width: 300px;
-
+    list-style: none;
+    padding: 0;
 }
 
-#app {
-    background-color: grey;
-    margin: auto;
-    width: 800px;
+.icon {
+    background-color: red;
+    padding: 7px;
+    color: white;
+    border-radius: 5px;
 }
 
-.btn {
-    border: 1px solid black;
+input {
+    border: 0;
+    padding: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 75%;
+}
+
+.button {
+    background: transparent;
+    border: 1px solid #a58515;
+    color: #a58515;
+    padding: 4px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 25%;
 }

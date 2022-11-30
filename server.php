@@ -1,11 +1,30 @@
 <?php
-$todos = ['HTML', 'CSS', 'JAVASCRIPT'];
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-Requested-With");
 
-if (isset($_POST['todo'])) {
-    $todo = $_POST['todo'];
-    header('Content-Type: application/json');
-    echo json_encode($todo);
+$file_url = './todo.json';
+
+$file_text = file_get_contents($file_url);
+$list = json_decode($file_text); 
+
+if(isset($_POST['newTask'])) {
+
+    $newTodo = [
+        'text' => $_POST['newTask'],
+        'done' => false,
+    ];
+
+    array_push($list, $newTodo);
+
+    file_put_contents($file_url, json_encode($list));
+
 } else {
+
     header('Content-Type: application/json');
-    echo json_encode($todos);
+    echo json_encode($list);
+
 }
+
+
+
+?>

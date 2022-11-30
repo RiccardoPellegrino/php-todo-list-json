@@ -1,36 +1,36 @@
-"use-strict"
-
-const { createApp } = Vue;
+const {createApp} = Vue;
 
 const app = createApp({
-    data() {
-        return {
-            newToDo: '',
-            todos: []
+    data(){
+        return{
+            newTask: '',
+            list: [],
         }
     },
     methods: {
         send() {
-            axios.post('server.php', { 'todo': this.newToDo }, { headers: { 'Content-Type': 'multipart/form-data' } }
+            const data = {
+                newTask: this.newTask,
+            }
+            axios.post(
+                'server.php',
+                data, 
+                {headers: {'Content-Type': 'multipart/form-data'}}
             ).then((response) => {
-                this.todos.unshift(response.data);
-                console.log(response.data)
-            })
-            this.newToDo='';
+                console.log(response.data);
+
+                this.getList();
+
+                this.newTask = '';
+            });
         },
         getList() {
-            axios.get('server.php').then((response) => {
-                console.log(response.data);
-                this.todos = [...response.data];
-            }
-            )
-           
-        }
+            axios.get('server.php').then((res) => {
+                this.list = [...res.data];
+            })
+        },
     },
     mounted() {
-
-        this.getList();
-        
+        this.getList()
     }
-});
-app.mount('#app')
+}).mount('#app');
