@@ -18,6 +18,19 @@ if(isset($_POST['newTask'])) {
 
     file_put_contents($file_url, json_encode($list));
 
+} else if(isset($_POST['index']) && isset($_GET['done'])) {
+
+    $i = intval($_POST['index']);
+    $list[$i]->done = !$list[$i]->done;
+    file_put_contents($file_url, json_encode($list));
+    
+
+} else if(isset($_POST['index']) && isset($_GET['delete'])) {
+
+    $i = intval($_POST['index']);
+    array_splice($list, $i, 1);
+    file_put_contents($file_url, json_encode($list));
+
 } else {
 
     header('Content-Type: application/json');
